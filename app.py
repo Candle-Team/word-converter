@@ -9,8 +9,11 @@ def convert_doc():
         return "Please provide document"
 
     try:
-      subprocess.check_call(["unoconv", word_filename])
+      subprocess.check_call(["docx2pdf", word_filename])
     except subprocess.CalledProcessError:
         return "Something went wrong. Make sure you specify the correct path"
 
-    return "Success!"
+    filename = word_filename.split(".doc")[0]
+    pdf_filename = filename + ".pdf"
+
+    return pdf_filename
